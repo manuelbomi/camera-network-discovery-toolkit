@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ report.survey_name }}</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --text: #1b2430;
+      --muted: #5b6b7c;
+      --border: #dfe5eb;
+      --ok: #1c7d3f;
+      --ok-bg: #e6f6ec;
+      --warn: #9a6d00;
+      --warn-bg: #fff6e0;
+      --bad: #b3261e;
+      --bad-bg: #fdeceb;
+      --accent: #2457c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .header {
+      max-width: 1100px;
+      margin: 0 auto 24px auto;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin: 0 0 4px 0;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .summary {
+      max-width: 1100px;
+      margin: 0 auto 24px auto;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      min-width: 140px;
+    }
+    .card .value {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .card .label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    table {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.88rem;
+    }
+    thead th {
+      text-align: left;
+      background: #eef1f5;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+    .badge-ok { color: var(--ok); background: var(--ok-bg); }
+    .badge-warn { color: var(--warn); background: var(--warn-bg); }
+    .badge-bad { color: var(--bad); background: var(--bad-bg); }
+    .mono {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    footer {
+      max-width: 1100px;
+      margin: 24px auto 0 auto;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>{{ report.survey_name }}</h1>
+    <div class="meta">Generated {{ report.generated_at }} &middot; {{ report.camera_count }} camera(s) surveyed</div>
+  </div>
+
+  <div class="summary">
+    <div class="card">
+      <div class="value">{{ report.camera_count }}</div>
+      <div class="label">Cameras</div>
+    </div>
+    <div class="card">
+      <div class="value">{{ report.cameras | selectattr("rtsp_status", "equalto", "success") | list | length }}</div>
+      <div class="label">RTSP OK</div>
+    </div>
+    <div class="card">
+      <div class="value">{{ report.cameras | rejectattr("rtsp_status", "equalto", "success") | list | length }}</div>
+      <div class="label">RTSP Issues</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>IP</th>
+        <th>Source</th>
+        <th>RTSP Status</th>
+        <th>Latency (s)</th>
+        <th>FPS</th>
+        <th>Resolution</th>
+        <th>Ports</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cam in report.cameras %}
+      <tr>
+        <td>{{ cam.name }}</td>
+        <td class="mono">{{ cam.ip }}</td>
+        <td>{{ cam.source }}</td>
+        <td>
+          {% if cam.rtsp_status == "success" %}
+            <span class="badge badge-ok">success</span>
+          {% elif cam.rtsp_status == "timeout" %}
+            <span class="badge badge-warn">timeout</span>
+          {% elif cam.rtsp_status == "error" %}
+            <span class="badge badge-bad">error</span>
+          {% else %}
+            <span class="badge badge-warn">not tested</span>
+          {% endif %}
+        </td>
+        <td>{{ cam.rtsp_latency_sec if cam.rtsp_latency_sec is not none else "-" }}</td>
+        <td>{{ cam.rtsp_fps if cam.rtsp_fps is not none else "-" }}</td>
+        <td>{{ cam.rtsp_resolution or "-" }}</td>
+        <td class="mono">{{ cam.port_summary or "-" }}</td>
+        <td>
+          {% if cam.notes %}{{ cam.notes }}{% endif %}
+          {% if cam.notes and cam.rtsp_error %}&mdash;{% endif %}
+          {% if cam.rtsp_error %}{{ cam.rtsp_error }}{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <footer>
+    Generated by camera-network-discovery-toolkit. Credentials are never included in this report.
+  </footer>
+</body>
+</html>

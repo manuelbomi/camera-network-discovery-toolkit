@@ -1,0 +1,44 @@
+# Example manual camera inventory.
+#
+# Use this format when ONVIF WS-Discovery can't be used on the customer
+# network (multicast blocked, active scanning not permitted, etc.) or when
+# the customer already has a documented list of cameras.
+#
+# All IPs, usernames, and passwords below are placeholders for illustration
+# only. Never commit real camera credentials to a file like this -- see the
+# README's "Limitations & production hardening notes" for recommendations
+# on credential handling (e.g. a secrets vault or environment variables
+# instead of plaintext YAML).
+
+cameras:
+  - name: lobby-entrance-cam
+    ip: 192.0.2.10
+    rtsp_url: "rtsp://svc_camera:REPLACE_ME@192.0.2.10:554/stream1"
+    username: svc_camera
+    password: REPLACE_ME
+    onvif_port: 80
+    notes: "Ceiling mount, covers main entrance and reception desk."
+
+  - name: warehouse-dock-01
+    ip: 192.0.2.11
+    rtsp_url: "rtsp://svc_camera:REPLACE_ME@192.0.2.11:554/stream1"
+    username: svc_camera
+    password: REPLACE_ME
+    onvif_port: 8000
+    notes: "Outdoor housing, loading dock 1. Confirm PoE budget on switch."
+
+  - name: parking-lot-north
+    ip: 192.0.2.12
+    rtsp_url: "rtsp://svc_camera:REPLACE_ME@192.0.2.12:554/stream1"
+    username: svc_camera
+    password: REPLACE_ME
+    onvif_port: 80
+    notes: "Long cable run from nearest switch (~80m); verify link speed."
+
+  - name: server-room-door
+    ip: 192.0.2.13
+    rtsp_url: "rtsp://svc_camera:REPLACE_ME@192.0.2.13:554/stream1"
+    username: svc_camera
+    password: REPLACE_ME
+    onvif_port: 443
+    notes: "Existing camera, customer wants it folded into the new system."
