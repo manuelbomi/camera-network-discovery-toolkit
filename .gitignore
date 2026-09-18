@@ -15,3 +15,8 @@ report.csv
 report.json
 .env
 .DS_Store
+
+# React + TypeScript report viewer (frontend/)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/

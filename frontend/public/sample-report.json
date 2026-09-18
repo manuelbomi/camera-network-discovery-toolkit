@@ -1,0 +1,207 @@
+{
+  "survey_name": "Example Site Survey (Sample Data)",
+  "generated_at": "2026-09-18T20:41:07+00:00",
+  "camera_count": 4,
+  "cameras": [
+    {
+      "name": "lobby-entrance-cam",
+      "ip": "192.0.2.10",
+      "source": "manual",
+      "rtsp_url": "rtsp://svc_camera:REPLACE_ME@192.0.2.10:554/stream1",
+      "onvif_port": 80,
+      "rtsp_status": "timeout",
+      "rtsp_latency_sec": null,
+      "rtsp_fps": null,
+      "rtsp_resolution": "",
+      "rtsp_error": "No response within 1.0s",
+      "port_checks": [
+        {
+          "host": "192.0.2.10",
+          "port": 554,
+          "label": "RTSP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.10",
+          "port": 80,
+          "label": "HTTP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.10",
+          "port": 443,
+          "label": "HTTPS",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.10",
+          "port": 8000,
+          "label": "Custom API",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        }
+      ],
+      "port_summary": "RTSP:timeout, HTTP:timeout, HTTPS:timeout, Custom API:timeout",
+      "latency_avg_ms": null,
+      "latency_reachable": false,
+      "notes": "Ceiling mount, covers main entrance and reception desk."
+    },
+    {
+      "name": "warehouse-dock-01",
+      "ip": "192.0.2.11",
+      "source": "manual",
+      "rtsp_url": "rtsp://svc_camera:REPLACE_ME@192.0.2.11:554/stream1",
+      "onvif_port": 8000,
+      "rtsp_status": "timeout",
+      "rtsp_latency_sec": null,
+      "rtsp_fps": null,
+      "rtsp_resolution": "",
+      "rtsp_error": "No response within 1.0s",
+      "port_checks": [
+        {
+          "host": "192.0.2.11",
+          "port": 554,
+          "label": "RTSP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.11",
+          "port": 80,
+          "label": "HTTP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.11",
+          "port": 443,
+          "label": "HTTPS",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.11",
+          "port": 8000,
+          "label": "Custom API",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        }
+      ],
+      "port_summary": "RTSP:timeout, HTTP:timeout, HTTPS:timeout, Custom API:timeout",
+      "latency_avg_ms": null,
+      "latency_reachable": false,
+      "notes": "Outdoor housing, loading dock 1. Confirm PoE budget on switch."
+    },
+    {
+      "name": "parking-lot-north",
+      "ip": "192.0.2.12",
+      "source": "manual",
+      "rtsp_url": "rtsp://svc_camera:REPLACE_ME@192.0.2.12:554/stream1",
+      "onvif_port": 80,
+      "rtsp_status": "timeout",
+      "rtsp_latency_sec": null,
+      "rtsp_fps": null,
+      "rtsp_resolution": "",
+      "rtsp_error": "No response within 1.0s",
+      "port_checks": [
+        {
+          "host": "192.0.2.12",
+          "port": 554,
+          "label": "RTSP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.12",
+          "port": 80,
+          "label": "HTTP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.12",
+          "port": 443,
+          "label": "HTTPS",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.12",
+          "port": 8000,
+          "label": "Custom API",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        }
+      ],
+      "port_summary": "RTSP:timeout, HTTP:timeout, HTTPS:timeout, Custom API:timeout",
+      "latency_avg_ms": null,
+      "latency_reachable": false,
+      "notes": "Long cable run from nearest switch (~80m); verify link speed."
+    },
+    {
+      "name": "server-room-door",
+      "ip": "192.0.2.13",
+      "source": "manual",
+      "rtsp_url": "rtsp://svc_camera:REPLACE_ME@192.0.2.13:554/stream1",
+      "onvif_port": 443,
+      "rtsp_status": "timeout",
+      "rtsp_latency_sec": null,
+      "rtsp_fps": null,
+      "rtsp_resolution": "",
+      "rtsp_error": "No response within 1.0s",
+      "port_checks": [
+        {
+          "host": "192.0.2.13",
+          "port": 554,
+          "label": "RTSP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.13",
+          "port": 80,
+          "label": "HTTP",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.13",
+          "port": 443,
+          "label": "HTTPS",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        },
+        {
+          "host": "192.0.2.13",
+          "port": 8000,
+          "label": "Custom API",
+          "status": "timeout",
+          "error_message": "No response within 1.0s",
+          "connect_time_sec": null
+        }
+      ],
+      "port_summary": "RTSP:timeout, HTTP:timeout, HTTPS:timeout, Custom API:timeout",
+      "latency_avg_ms": null,
+      "latency_reachable": false,
+      "notes": "Existing camera, customer wants it folded into the new system."
+    }
+  ]
+}

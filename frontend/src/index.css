@@ -1,0 +1,44 @@
+:root {
+  --text: #3a3d45;
+  --text-muted: #6b7280;
+  --text-heading: #0f172a;
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --border: #dfe3e8;
+
+  --status-good-bg: #e3f7e9;
+  --status-good-fg: #1a7f37;
+  --status-bad-bg: #fdecea;
+  --status-bad-fg: #b3261e;
+  --status-warn-bg: #fff4e0;
+  --status-warn-fg: #92600a;
+  --status-neutral-bg: #eceef1;
+  --status-neutral-fg: #4b5563;
+
+  font: 16px/1.5 system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-heading);
+  font-weight: 600;
+}
+
+code {
+  font-family: ui-monospace, Consolas, "SFMono-Regular", monospace;
+  font-size: 0.9em;
+}

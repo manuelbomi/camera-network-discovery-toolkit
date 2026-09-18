@@ -182,13 +182,77 @@ camera-network-discovery-toolkit/
 │   ├── test_network_readiness.py
 │   ├── test_report.py
 │   └── test_rtsp_health.py
-├── .github/workflows/ci.yml   # ruff + pytest on every push/PR
+├── frontend/                  # React + TypeScript report viewer (see "Report Viewer" below)
+│   ├── src/
+│   │   ├── App.tsx
+│   │   ├── types.ts            # TypeScript mirror of report.py's JSON shape
+│   │   └── components/
+│   ├── public/sample-report.json  # real report.json sample, from examples/cameras.yaml
+│   └── Dockerfile              # optional nginx static-serve image
+├── docs/screenshots/
+│   └── report-viewer.png
+├── .github/workflows/ci.yml   # ruff + pytest (Python) and tsc + vite build (frontend) on every push/PR
 ├── Dockerfile
 ├── requirements.txt
 ├── pyproject.toml
 ├── conftest.py
 ├── LICENSE
 └── README.md
+```
+
+## Report Viewer
+
+![Report viewer screenshot](docs/screenshots/report-viewer.png)
+
+`frontend/` is a small React + TypeScript app that renders a `camtoolkit
+survey` report (camera inventory, RTSP health, network readiness) as a
+presentable, color-coded page you can hand to a customer or teammate --
+this toolkit is a CLI, not a live service, so the viewer reads a
+`report.json` file directly rather than talking to a backend. The
+screenshot above is real output: it was produced by running `camtoolkit
+survey` against the bundled `examples/cameras.yaml`, so every camera shows
+up as unreachable/timeout, since `192.0.2.0/24` is a reserved,
+non-routable documentation address range (RFC 5737) -- exactly what you'd
+expect a real survey to report for cameras that don't exist yet.
+
+It shows:
+
+- A summary strip (cameras found, cameras healthy, ports failing).
+- A camera inventory table with RTSP status, resolution/FPS, and
+  time-to-first-frame.
+- A network-readiness panel with per-camera, per-port pass/fail/timeout
+  badges (green = open/success, yellow = timeout, red = closed/error).
+
+Run it locally:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+By default it loads the bundled `frontend/public/sample-report.json`. To
+point it at a real survey's output, generate a report and drop it in place
+of the sample file (or edit `REPORT_URL` in `frontend/src/App.tsx`):
+
+```bash
+python -m camtoolkit survey --inventory my-site-cameras.yaml --out report.json
+cp report.json frontend/public/sample-report.json
+```
+
+Build a static production bundle and serve it with any static file server:
+
+```bash
+npm run build
+npx serve dist          # or: npm run preview
+```
+
+Optionally, build and serve it with the small nginx-based image in
+`frontend/Dockerfile`:
+
+```bash
+docker build -t camtoolkit-report-viewer ./frontend
+docker run --rm -p 8080:80 camtoolkit-report-viewer
 ```
 
 ## Testing

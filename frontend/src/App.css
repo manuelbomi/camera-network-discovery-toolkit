@@ -1,0 +1,248 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.page-subtitle {
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+
+.status-message {
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.status-message-error {
+  background: var(--status-bad-bg);
+  color: var(--status-bad-fg);
+  border-color: var(--status-bad-fg);
+}
+
+/* --- Report metadata --- */
+
+.report-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.report-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.report-meta-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.report-meta-value {
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+/* --- Summary strip --- */
+
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.summary-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.summary-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.summary-label {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* --- Sections --- */
+
+section {
+  margin-bottom: 36px;
+}
+
+section h2 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
+
+/* --- Camera table --- */
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.report-table th,
+.report-table td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 14px;
+}
+
+.report-table th {
+  background: #f8f9fb;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.report-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.camera-name {
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.cell-subtext {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cell-notes {
+  max-width: 260px;
+  color: var(--text-muted);
+}
+
+/* --- Network readiness panel --- */
+
+.network-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.network-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.network-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.port-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.port-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f9fb;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.port-chip-label {
+  color: var(--text-muted);
+}
+
+/* --- Badges --- */
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge-good {
+  background: var(--status-good-bg);
+  color: var(--status-good-fg);
+}
+
+.badge-bad {
+  background: var(--status-bad-bg);
+  color: var(--status-bad-fg);
+}
+
+.badge-warn {
+  background: var(--status-warn-bg);
+  color: var(--status-warn-fg);
+}
+
+.badge-neutral {
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral-fg);
+}
+
+/* --- Footer --- */
+
+.page-footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 720px) {
+  .report-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
